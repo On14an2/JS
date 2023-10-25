@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab3</title>
+</head>
+<body>
+<script>
+    var inputString = "каК Я лЮблю уЧиться";
+    var words = inputString.split(" ");
+    var transformedWords = [];
+    for (var i = 0; i < words.length; i++) {
+        var word = words[i].toLowerCase();
+        word = word.charAt(0).toUpperCase() + word.slice(1);
+        transformedWords.push(word);
+    }
+    var resultString = transformedWords.join(" ");
+    console.log(resultString);
+
+    //Задача с весом
+    var weightInKilograms = 75;
+    var puds = Math.trunc(weightInKilograms / 16); // Количество пудов
+    var remainingKilograms = weightInKilograms % 16; // Остаток в килограммах
+    var pounds = Math.trunc(remainingKilograms * 1000 / 16); // Количество фунтов
+    console.log("Ваш вес в пудах и фунтах: " + puds + " пудов " + pounds + " фунтов");
+</script>
+<h1>Узнай свой вес</h1>
+<button onclick="calculateWeight()">Узнать вес</button>
+
+<script>
+    function calculateWeight() {
+        var weightInKilograms = parseInt(
+            prompt("Введите ваш вес в килограммах", " ")
+        );
+        if (!isNaN(weightInKilograms)) {
+            var puds = Math.trunc(weightInKilograms / 16);
+            var remainingKilograms = weightInKilograms % 16;
+            var pounds = Math.trunc((remainingKilograms * 1000) / 16);
+            alert("Ваш вес равен " + puds + " пудов, " + pounds + " фунтов");
+        } else {
+            alert(
+                "Пожалуйста, введите корректное значение для веса в килограммах."
+            );
+        }
+    }
+</script>
+</body>
+</html>

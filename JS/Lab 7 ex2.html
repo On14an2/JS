@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  var CAT = ["Мурка", "Барсик", "Рыжик", "Васька", "Леопольд", "Матроскин", "Мурзик", "Том"];
+  var DOG = ["Шарик", "Тузик", "Рекс", "Бобик", "Макс", "Джек", "Барон", "Милка"];
+
+  var имя = prompt("Введите ваше имя", "");
+
+  if (CAT.includes(имя)) {
+    alert("Похоже, вы - кошка!");
+    window.open("http://petstory.ru", "_blank");
+  } else if (DOG.includes(имя)) {
+    alert("Похоже, вы - собака!");
+    window.open("http://petstory.ru", "_blank");
+  } else {
+    alert("Похоже, вы - человек!");
+  }
+</script>
+</body>
+</html>
