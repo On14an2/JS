@@ -1,0 +1,165 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab9</title>
+  </head>
+  <body>
+    <h1>Задание 1</h1>
+    <p>Введите, какие числа удваивать: четные или нечетные.</p>
+    <input type="radio" id="even" name="numberType" value="even" />
+    <label for="even">Четные</label>
+    <input type="radio" id="odd" name="numberType" value="odd" />
+    <label for="odd">Нечетные</label>
+    <button onclick="doubleNumbers()">Удвоить числа</button>
+    <p id="output1"></p>
+
+    <h1>Задание 2</h1>
+    <p>Выберите, суммировать четные или нечетные числа.</p>
+    <input type="radio" id="evenSum" name="sumType" value="even" />
+    <label for="evenSum">Четные</label>
+    <input type="radio" id="oddSum" name="sumType" value="odd" />
+    <label for="oddSum">Нечетные</label>
+    <button onclick="calculateSum()">Вычислить сумму</button>
+    <p id="output2"></p>
+
+    <h1>Задание 3</h1>
+    <p>Введите число для вычисления факториала:</p>
+    <input type="number" id="factorialInput" />
+    <button onclick="calculateFactorial()">Вычислить факториал</button>
+    <p id="output3"></p>
+
+    <h1>Задание 4</h1>
+    <p>Введите число для вычисления факториала с использованием рекурсии:</p>
+    <input type="number" id="recursiveFactorialInput" />
+    <button onclick="calculateRecursiveFactorial()">
+      Вычислить факториал рекурсивно
+    </button>
+    <p id="output4"></p>
+
+    <h1>Задание 5</h1>
+    <p>
+      Введите N для вычисления N-го числа Фибоначчи с использованием рекурсии:
+    </p>
+    <input type="number" id="fibonacciInput" />
+    <button onclick="calculateFibonacci()">
+      Вычислить N-е число Фибоначчи
+    </button>
+    <p id="output5"></p>
+
+    <script>
+      // Задание 1
+      function doubleNumbers() {
+        const numberType = document.querySelector(
+          'input[name="numberType"]:checked'
+        ).value;
+        let output = "";
+
+        for (let i = 1, count = 0; count < 10; i++) {
+          if (
+            (numberType === "even" && i % 2 === 0) ||
+            (numberType === "odd" && i % 2 !== 0)
+          ) {
+            output += `${i * 2} `;
+            count++;
+          }
+        }
+
+        document.getElementById(
+          "output1"
+        ).textContent = `Удвоенные числа: ${output}`;
+      }
+
+      // Задание 2
+      function calculateSum() {
+        const sumType = document.querySelector(
+          'input[name="sumType"]:checked'
+        ).value;
+        let sum = 0;
+
+        for (let i = 1, count = 0; count < 10; i++) {
+          if (
+            (sumType === "even" && i % 2 === 0) ||
+            (sumType === "odd" && i % 2 !== 0)
+          ) {
+            sum += i;
+            count++;
+          }
+        }
+
+        document.getElementById(
+          "output2"
+        ).textContent = `Сумма первых 10 чисел: ${sum}`;
+      }
+
+      // Задание 3
+      function calculateFactorial() {
+        const input = parseInt(document.getElementById("factorialInput").value);
+
+        if (isNaN(input) || input < 0) {
+          document.getElementById("output3").textContent =
+            "Пожалуйста, введите положительное число.";
+        } else {
+          let factorial = 1;
+          for (let i = 1; i <= input; i++) {
+            factorial *= i;
+          }
+          document.getElementById(
+            "output3"
+          ).textContent = `Факториал числа ${input}: ${factorial}`;
+        }
+      }
+
+      // Задание 4
+      function calculateRecursiveFactorial() {
+        const input = parseInt(
+          document.getElementById("recursiveFactorialInput").value
+        );
+
+        if (isNaN(input) || input < 0) {
+          document.getElementById("output4").textContent =
+            "Пожалуйста, введите положительное число.";
+        } else {
+          const factorial = calculateFactorialRecursively(input);
+          document.getElementById(
+            "output4"
+          ).textContent = `Факториал числа ${input} (рекурсивно): ${factorial}`;
+        }
+      }
+
+      function calculateFactorialRecursively(n) {
+        if (n <= 1) {
+          return 1;
+        } else {
+          return n * calculateFactorialRecursively(n - 1);
+        }
+      }
+
+      // Задание 5
+      function calculateFibonacci() {
+        const n = parseInt(document.getElementById("fibonacciInput").value);
+
+        if (isNaN(n) || n < 0) {
+          document.getElementById("output5").textContent =
+            "Пожалуйста, введите неотрицательное целое число.";
+        } else {
+          const result = calculateFibonacciRecursively(n);
+          document.getElementById(
+            "output5"
+          ).textContent = `N-е число Фибоначчи: ${result}`;
+        }
+      }
+
+      function calculateFibonacciRecursively(n) {
+        if (n <= 1) {
+          return n;
+        } else {
+          return (
+            calculateFibonacciRecursively(n - 1) +
+            calculateFibonacciRecursively(n - 2)
+          );
+        }
+      }
+    </script>
+  </body>
+</html>

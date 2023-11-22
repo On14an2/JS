@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Виселица</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Игра "Виселица"</h1>
+    <p id="word-display"></p>
+    <p>Угаданные буквы: <span id="guessed-letters"></span></p>
+    <p>Очки: <span id="score">6</span></p>
+    <p>Попытки: <span id="attempts">0</span></p>
+    <input
+      type="text"
+      id="letter-input"
+      maxlength="1"
+      style="text-transform: uppercase"
+    />
+    <button onclick="guessLetter()">Угадать букву</button>
+    <button onclick="endGame()">Завершить игру</button>
+
+    <script>
+      // Список слов для игры
+      const words = [
+        "ВИСЕЛИЦА",
+        "КОМПЬЮТЕР",
+        "ДЖАВА",
+        "БОБЕР",
+        "НОУТБУК",
+      ];
+
+      let selectedWord = words[Math.floor(Math.random() * words.length)];
+
+      let wordDisplay = Array(selectedWord.length).fill("_");
+      let guessedLetters = [];
+      let score = 6;
+      let attempts = 0;
+      function updateDisplay() {
+        document.getElementById("word-display").textContent =
+          wordDisplay.join(" ");
+        document.getElementById("guessed-letters").textContent =
+          guessedLetters.join(", ");
+        document.getElementById("score").textContent = score;
+        document.getElementById("attempts").textContent = attempts;
+      }
+
+      function guessLetter() {
+        const inputElement = document.getElementById("letter-input");
+        const letter = inputElement.value.toUpperCase();
+
+        if (!letter.match(/[А-Я]/)) {
+          alert("Пожалуйста, введите букву русского алфавита.");
+          return;
+        }
+
+        if (guessedLetters.includes(letter)) {
+          alert("Вы уже вводили эту букву.");
+          return;
+        }
+
+        guessedLetters.push(letter);
+        let letterFound = false;
+        for (let i = 0; i < selectedWord.length; i++) {
+          if (selectedWord[i] === letter) {
+            wordDisplay[i] = letter;
+            letterFound = true;
+          }
+        }
+
+        if (!letterFound) {
+          score--;
+        }
+
+        if (score === 0) {
+          alert("Вы проиграли! Загаданное слово: " + selectedWord);
+          resetGame();
+        } else if (wordDisplay.join("") === selectedWord) {
+          alert("Поздравляем! Вы отгадали слово: " + selectedWord);
+          resetGame();
+        }
+
+        inputElement.value = "";
+        updateDisplay();
+      }
+
+      function endGame() {
+        alert("Игра завершена. Загаданное слово: " + selectedWord);
+        resetGame();
+      }
+
+      function resetGame() {
+        selectedWord = words[Math.floor(Math.random() * words.length)];
+        wordDisplay = Array(selectedWord.length).fill("_");
+        guessedLetters = [];
+        score = 6;
+        attempts = 0;
+        updateDisplay();
+      }
+
+      updateDisplay();
+    </script>
+  </body>
+</html>

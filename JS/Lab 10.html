@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 10</title>
+  </head>
+  <body>
+    <!-- Задание 1 -->
+    <h2>Задание 1</h2>
+    <label for="points">Введите количество очков:</label>
+    <input type="number" id="pointsInput" />
+    <button onclick="checkMedal()">Проверить медаль</button>
+    <p id="medalResult"></p>
+
+    <!-- Задание 2 -->
+    <h2>Задание 2</h2>
+    <p>Введите элементы первого массива через запятую:</p>
+    <input type="text" id="array1Input" />
+    <p>Введите элементы второго массива через запятую:</p>
+    <input type="text" id="array2Input" />
+    <button onclick="checkArrays()">Проверить массивы</button>
+    <p id="arraysResult"></p>
+
+    <script>
+      // Задание 1
+      function checkMedal() {
+        // Получаем значение из поля ввода
+        var points = document.getElementById("pointsInput").value;
+
+        // Проверяем условия и выводим результат
+        if (points < 10) {
+          document.getElementById("medalResult").innerHTML = "Нет медали";
+        } else if (points >= 10 && points <= 15) {
+          document.getElementById("medalResult").innerHTML = "Бронзовая медаль";
+        } else if (points >= 16 && points <= 20) {
+          document.getElementById("medalResult").innerHTML =
+            "Серебряная медаль";
+        } else {
+          document.getElementById("medalResult").innerHTML = "Золотая медаль";
+        }
+      }
+
+      // Задание 2
+      function areArraysSame() {
+        // Получаем значения из полей ввода и преобразуем в массивы
+        var array1 = document
+          .getElementById("array1Input")
+          .value.split(",")
+          .map(Number);
+        var array2 = document
+          .getElementById("array2Input")
+          .value.split(",")
+          .map(Number);
+
+        // Сравниваем массивы и выводим результат
+        if (JSON.stringify(array1) === JSON.stringify(array2)) {
+          document.getElementById("arraysResult").innerHTML =
+            "Массивы одинаковые";
+        } else {
+          document.getElementById("arraysResult").innerHTML =
+            "Массивы различаются";
+        }
+      }
+
+      // Функция для удобства вызова из HTML
+      function checkArrays() {
+        areArraysSame();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Content</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="timeTitle">Текущее время: <span id="currentTime"></span></h1>
+
+    <div id="poemContainer">
+      <p id="poem">Страница молчит, время летит,</p>
+    </div>
+
+    <script>
+      function updateTime() {
+        var currentTimeElement = document.getElementById("currentTime");
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        var formattedTime = hours + ":" + minutes + ":" + seconds;
+
+        currentTimeElement.textContent = formattedTime;
+      }
+
+      setInterval(updateTime, 1000);
+
+      function updatePoem() {
+        var poemElement = document.getElementById("poem");
+
+        var poems = [
+          "Страница молчит, время летит,",
+          "Словно птица, ветер стрекочет,",
+          "Снова рассвет, снова закат,",
+          "Летят минуты, как листья летят.",
+        ];
+
+        var randomIndex = Math.floor(Math.random() * poems.length);
+        var randomPoem = poems[randomIndex];
+
+        poemElement.textContent = randomPoem;
+      }
+
+      setInterval(updatePoem, 10000);
+    </script>
+  </body>
+</html>
