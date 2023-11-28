@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site</title>
+    
+</head>
+<body>
+    <div>
+        <h1 id="header">Header</h1>
+        <button onclick="ChangeHeader('header')"> Change header</button>
+        <h2 id="underHeader">Under Header</h2>
+        <button onclick="ChangeHeader('underHeader')"> Change header</button>
+        
+    </div>
+    <div>
+        <select name="Выберите поэта" id="poets" onchange="ChangePoet()">
+            <option value="Pushkin">Пушкин</option>
+            <option value="Esenin">Есенин</option>
+            <option value="Lermontov">Лермонтов</option>
+            <option value="Brodski">Бродский</option>
+            <option value="Unknown">???</option>
+        </select>
+        <div>
+            <p id="TextPlaceholder">Выберите поэта</p>
+        </div>
+    </div>
+
+   <script>
+
+       //1
+       const ChangeHeader = function(headerId){
+           var header = document.getElementById(headerId);
+           var headerText = prompt("Введите новый заголовок:");
+           header.innerHTML = headerText;
+       }
+       //3
+       let m1 = [[],[],[],[]]; //массив не объявлен перед прохождением
+       for (let i = 0; i < 4; i++) {
+           for (let j = 0; j < 4; j++) {
+               m1[i][j]=Math.floor(Math.random() * 5);
+               document.write(m1[i][j],' ');
+               document.write ( "<br>");
+           }
+       }
+       //4
+       const ChangePoet = function(){
+           var poetSelect = document.getElementById("poets");
+           var poet = poetSelect.options[poetSelect.selectedIndex].value;
+           var text = document.getElementById("TextPlaceholder")
+           switch(poet){
+               case 'Pushkin':
+                   text.innerHTML = "Любви, надежды, тихой славы <br> "+
+                       "Недолго нежил нас обман, <br>Исчезли юные забавы,<br>" +
+                       "Как сон, как утренний туман<br>" +
+                       "Но в нас горит еще желанье,<br>" +
+                       "Под гнетом власти роковой<br>Нетерпеливою душой";
+                   break;
+               case 'Esenin':
+                   text.innerHTML = "В этот лес завороженный,<br>"+
+                       "По пушинкам серебра,<br>" +
+                       "Я с винтовкой заряженной<br>" +
+                       "На охоту шел вчера.<br>"+
+                       " По дорожке чистой, гладкой<br>"+
+                       "Я прошел, не наследил…<br>"+
+                       "Кто ж катался здесь украдкой?<br>"+
+                       " Кто здесь падал и ходил?"
+                   break;
+               case 'Lermontov':
+                   text.innerHTML = "Отмщенье, государь, отмщенье!<br>"+
+                       "Паду к ногам твоим:<br>"+
+                       "Будь справедлив и накажи убийцу,<br>"+
+                       "Чтоб казнь его в позднейшие века<br>"+
+                       "Твой правый суд потомству возвестила,<br>"+
+                       "Чтоб видели злодеи в ней пример."
+                   break;
+               case 'Brodski':
+                   text.innerHTML = "Не выходи из комнаты, не совершай ошибку.<br>"+
+                       "Зачем тебе Солнце, если ты куришь Шипку?<br>"+
+                       "За дверью бессмысленно всё, особенно — возглас счастья.<br>"+
+                       "Только в уборную — и сразу же возвращайся.<br>"
+                   break;
+               default:
+                   text.innerHTML = 'Я не знаю такого поэта';
+                   break;
+           }
+       }
+   </script>
+</body>
+</html>
